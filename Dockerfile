@@ -27,4 +27,6 @@ WORKDIR $SYNTAXNETDIR/models/syntaxnet
 
 CMD [ "sh", "-c", "echo 'Bob brought the pizza to Alice.' | syntaxnet/demo.sh" ]
 
+RUN pip install flask && pip install multiprocessing 
+
 RUN cd $SYNTAXNETDIR/parsey-mcparseface-server && python server.py
