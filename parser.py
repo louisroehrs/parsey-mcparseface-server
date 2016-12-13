@@ -3,7 +3,7 @@
 from collections import OrderedDict
 import subprocess
 
-ROOT_DIR = "../models/syntaxnet"
+ROOT_DIR = "models/syntaxnet"
 PARSER_EVAL = "bazel-bin/syntaxnet/parser_eval_forever"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
