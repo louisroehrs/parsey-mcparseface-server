@@ -5,7 +5,6 @@ import subprocess
 
 ROOT_DIR = "models/syntaxnet"
 PARSER_EVAL = "bazel-bin/syntaxnet/parser_eval_forever"
-PARSER_EVAL = "models/syntaxnet/syntaxnet/parser_eval_forever"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
