@@ -4,7 +4,7 @@ from collections import OrderedDict
 import subprocess
 
 ROOT_DIR = "models/syntaxnet"
-PARSER_EVAL = "bazel-bin/syntaxnet/parser_eval_forever"
+PARSER_EVAL = "syntaxnet/parser_eval_forever"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
@@ -13,7 +13,6 @@ def open_parser_eval(args):
     cwd=ROOT_DIR,
     stdin=subprocess.PIPE,
     stdout=subprocess.PIPE,
-    stderr=subprocess.STDOUT
   )
 
 def send_input(process, input):
