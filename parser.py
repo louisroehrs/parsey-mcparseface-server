@@ -12,7 +12,8 @@ def open_parser_eval(args):
     [PARSER_EVAL] + args,
     cwd=ROOT_DIR,
     stdin=subprocess.PIPE,
-    stdout=subprocess.PIPE
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT
   )
 
 def send_input(process, input):
