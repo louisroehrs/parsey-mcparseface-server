@@ -6,7 +6,7 @@
 import os
 from flask import Flask, request, Response
 from multiprocessing import Pool
-from parser import parse_sentence
+from .parser import parse_sentence
 import json
 
 app = Flask(__name__)
