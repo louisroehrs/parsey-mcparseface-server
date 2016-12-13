@@ -6,7 +6,6 @@
 import os
 from flask import Flask, request, Response
 from multiprocessing import Pool
-from parser import parse_sentence
 import json
 
 app = Flask(__name__)
@@ -17,7 +16,7 @@ pool = Pool(1, maxtasksperchild=50)
 @app.route('/')
 def index():
   q = request.args.get("q", "")
-  result = pool.apply(parse_sentence, [q])
+  result = q
 
   return Response(
     response=json.dumps(result, indent=2),
