@@ -9,6 +9,7 @@ from multiprocessing import Pool
 #from parser import parse_sentence
 import json
 
+print "starting....";
 app = Flask(__name__)
 port = 80 if os.getuid() == 0 else 8000
 
