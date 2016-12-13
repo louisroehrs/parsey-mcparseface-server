@@ -8,6 +8,7 @@ PARSER_EVAL = "syntaxnet/parser_eval_forever"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
+  print " stuff %s" % (    [PARSER_EVAL] + args)
   return subprocess.Popen(
     [PARSER_EVAL] + args,
     cwd=ROOT_DIR,
@@ -39,7 +40,7 @@ pos_tagger = open_parser_eval([
     "--model_path=" + MODEL_DIR + "/tagger-params",
     "--slim_model",
     "--batch_size=1024",
-    "--alsologtostderr",
+    "--alsologtostderr"
   ])
 
 # Open the syntactic dependency parser.
@@ -53,7 +54,7 @@ dependency_parser = open_parser_eval([
     "--model_path=" + MODEL_DIR + "/parser-params",
     "--slim_model",
     "--batch_size=1024",
-    "--alsologtostderr",
+    "--alsologtostderr"
   ])
 
 def split_tokens(parse):
