@@ -3,9 +3,9 @@
 from collections import OrderedDict
 import subprocess
 
-ROOT_DIR = "models/syntaxnet"
-PARSER_EVAL = "models/syntaxnet/bazel-bin/syntaxnet/parser_eval"
-MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
+ROOT_DIR = "./models/syntaxnet"
+PARSER_EVAL = "./models/syntaxnet/bazel-bin/syntaxnet/parser_eval"
+MODEL_DIR = "./syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
   print " stuff %s" % (    [PARSER_EVAL] + args)
