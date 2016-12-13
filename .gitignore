@@ -5,6 +5,7 @@ __pycache__/
 
 #emacs 
 *.*~
+*~
 
 # C extensions
 *.so
