@@ -12,17 +12,18 @@ def open_parser_eval(args):
   return subprocess.Popen(
     [PARSER_EVAL] + args,
     cwd=ROOT_DIR,
-    stdin=subprocess.PIPE,
-    stdout=subprocess.PIPE,
+    stdin=PIPE,
+    stdout=PIPE
   )
 
 def send_input(process, input):
-  process.stdin.write(input.encode("utf8"))
-  process.stdin.write(b"\n\n") # signal end of documents
-  process.stdin.flush()
+  (mystdout, mystderr) = process.communicate(input.encode("utf8")+ b"\n\n")
+//  process.stdin.write(input.encode("utf8"))
+//  process.stdin.write(b"\n\n") # signal end of documents
+//  process.stdin.flush()
   response = b""
   while True:
-    line = process.stdout.readline()
+    line = mystdout.readline()
     if line.strip() == b"":
       # empty line signals end of response
       break
