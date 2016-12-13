@@ -7,7 +7,7 @@ ROOT_DIR = "/opt/syntaxnet/models/syntaxnet"
 PARSER_EVAL = "/opt/suntaxnet/models/syntaxnet/bazel-bin/syntaxnet/parser_eval"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
-def open_parsder_eval(args):
+def open_parser_eval(args):
   print " stuff %s" % (    [PARSER_EVAL] + args)
   return subprocess.Popen(
     [PARSER_EVAL] + args,
