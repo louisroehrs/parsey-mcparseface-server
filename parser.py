@@ -18,9 +18,9 @@ def open_parser_eval(args):
 
 def send_input(process, input):
   (mystdout, mystderr) = process.communicate(input.encode("utf8")+ b"\n\n")
-//  process.stdin.write(input.encode("utf8"))
-//  process.stdin.write(b"\n\n") # signal end of documents
-//  process.stdin.flush()
+#  process.stdin.write(input.encode("utf8"))
+#  process.stdin.write(b"\n\n") # signal end of documents
+#  process.stdin.flush()
   response = b""
   while True:
     line = mystdout.readline()
