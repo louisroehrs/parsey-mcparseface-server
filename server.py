@@ -6,18 +6,22 @@
 import os
 from flask import Flask, request, Response
 from multiprocessing import Pool
-from parser import parse_sentence
+#from parser import parse_sentence
 import json
 
 app = Flask(__name__)
 port = 80 if os.getuid() == 0 else 8000
 
 pool = Pool(1, maxtasksperchild=50)
-
+print " pool";
 @app.route('/')
 def index():
+#  print [" index",parse_sentence];
   q = request.args.get("q", "")
-  result = pool.apply(parse_sentence, [q])
+  print [" index",q];
+#  result = pool.apply(parse_sentence, [q])
+
+  print [" index",result];
 
   return Response(
     response=json.dumps(result, indent=2),
@@ -25,5 +29,6 @@ def index():
     content_type="application/json")
 
 if __name__ == '__main__':
-    app.run(debug=True, port=port, host="0.0.0.0")
+  print [" main",port];
+  app.run(debug=True, port=port, host="0.0.0.0")
 

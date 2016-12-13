@@ -5,7 +5,7 @@ import subprocess
 
 ROOT_DIR = "/opt/tensorflow/models/syntaxnet"
 PARSER_EVAL = "/opt/tensorflow/models/syntaxnet/bazel-bin/syntaxnet/parser_eval"
-MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
+MODEL_DIR = "/opt/tensorflow/models/syntaxnet/syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
   print " stuff %s" % (    [PARSER_EVAL] + args)
