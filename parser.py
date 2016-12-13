@@ -3,8 +3,8 @@
 from collections import OrderedDict
 import subprocess
 
-ROOT_DIR = "/opt/syntaxnet/models/syntaxnet"
-PARSER_EVAL = "/opt/suntaxnet/models/syntaxnet/bazel-bin/syntaxnet/parser_eval"
+ROOT_DIR = "/opt/tensorflow/models/syntaxnet"
+PARSER_EVAL = "/opt/tensorflow/models/syntaxnet/bazel-bin/syntaxnet/parser_eval"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
