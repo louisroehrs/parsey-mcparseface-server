@@ -4,7 +4,7 @@ from collections import OrderedDict
 import subprocess
 
 ROOT_DIR = "models/syntaxnet"
-PARSER_EVAL = "models/syntaxnet/syntaxnet/parser_eval_forever"
+PARSER_EVAL = "models/syntaxnet/bazel-bin/syntaxnet/parser-eval"
 MODEL_DIR = "syntaxnet/models/parsey_mcparseface"
 
 def open_parser_eval(args):
@@ -12,16 +12,18 @@ def open_parser_eval(args):
   return subprocess.Popen(
     [PARSER_EVAL] + args,
     cwd=ROOT_DIR,
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE
   )
 
 def send_input(process, input):
-  (mystdout, mystderr) = process.communicate(input.encode("utf8")+ b"\n\n")
-#  process.stdin.write(input.encode("utf8"))
-#  process.stdin.write(b"\n\n") # signal end of documents
-#  process.stdin.flush()
+#   (mystdout, mystderr) = process.communicate(input.encode("utf8")+ b"\n\n")
+  process.stdin.write(input.encode("utf8"))
+  process.stdin.write(b"\n\n") # signal end of documents
+  process.stdin.flush()
   response = b""
   while True:
-    line = mystdout.readline()
+    line = process.stdout.readline()
     if line.strip() == b"":
       # empty line signals end of response
       break
