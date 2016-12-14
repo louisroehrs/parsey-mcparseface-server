@@ -21,12 +21,19 @@ RUN mkdir -p $SYNTAXNETDIR \
     && apt-get clean
 
 RUN cd $SYNTAXNETDIR/models/syntaxnet \
-    && bazel test --genrule_strategy=standalone syntaxnet/... util/utf8/...
+    && bazel --output_user_root=bazel_root test --genrule_strategy=standalone syntaxnet/... util/utf8/...
 
 WORKDIR $SYNTAXNETDIR/models/syntaxnet
 
-CMD [ "sh", "-c", "echo 'Bob brought the pizza to Alice.' | syntaxnet/demo.sh" ]
+RUN [ "sh", "-c", "echo 'Bob brought the pizza to Alice.' | syntaxnet/demo.sh" ]
 
-RUN pip install flask && pip install multiprocessing 
+RUN pip install	flask && pip install multiprocessing
+RUN cd $SYNTAXNETDIR && ls -al ./models/syntaxnet/bazel-bin && ls -al /opt/tensorflow/models/syntaxnet/bazel_root/5b21cea144c0077ae150bf0330ff61a0/execroot/syntaxnet/bazel-out/local-opt/bin/syntaxnet
 
-RUN cd $SYNTAXNETDIR/parsey-mcparseface-server && python server.py
+
+RUN ls -al $SYNTAXNETDIR/models/syntaxnet/bazel-bin/syntaxnet/
+
+## RUN $SYNTAXNETDIR/models/syntaxnet/bazel-bin/syntaxnet/parser_eval --input=stdin    --output=stdout-conll    --hidden_layer_sizes=64    --arg_prefix=brain_tagger    --graph_builder=structured    --task_context=syntaxnet/models/parsey_mcparseface/context.pbtxt    --model_path=syntaxnet/models/parsey_mcparseface/tagger-params    --slim_model    --batch_size=1024    --alsologtostderr
+
+CMD    cd   $SYNTAXNETDIR/parsey-mcparseface-server && git pull origin   master && git checkout master  && cd $SYNTAXNETDIR && cp $SYNTAXNETDIR/parsey-mcparseface-server/* .   && cat server.py && python -m server   parser.py
+
